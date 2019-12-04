@@ -33,7 +33,7 @@ def autoMenu(inp1, inp2):
                   "Unlock Gate: U \n")
             answer = input()
             if answer == 'o' or answer == 'O':
-                file = "LEDONAuto.txt"
+                file = "LEDOnAuto.txt"
             elif answer == 'f' or answer == 'F':
                 file = "LEDOffAuto.txt"
             elif answer == 'l' or answer == 'L':
@@ -118,3 +118,16 @@ def calcUnlock():
     hour = readFile("unlockhour.txt")
     minute = readFile("unlockminute.txt")
     return calcAvg(day, hour, minute)
+
+def setAuto(averages, file):
+    if len(averages) == 3:
+        f.open(file, 'w')
+        f.write(str(averages[0]))
+        f.write('\n')
+        f.write(str(averages[1]))
+        f.write('\n')
+        f.write(str(averages[2]))
+        f.write('\n')
+        f.close()
+    else:
+        print("Error: This function does not have averages.)

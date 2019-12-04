@@ -25,28 +25,70 @@ def processMessage(client, userdata, message):
         LockController.unlock()
         print("Unlocked Gate")
     elif msg == "SetSensorHeight":
+        print("Setting Sensor Height Threshold")
         import sensorController
         sensorController.setTrigger2()
     elif msg == "ActivateSensor":
+        print("Activating Sensor")
         import sensorController
         sensorController.detect()
     elif msg == "CalcAverageLEDOn":
         import AutomationData
-        AutomationData.autoMenu(1, 1)
+        averages = AutomationData.calcLEDOn()
+        AutomationData.setAuto(averages, "LEDOnAuto.txt")
     elif msg == "CalcAverageLEDOff":
         import AutomationData
-        AutomationData.autoMenu(1, 2)
+        averages = AutomationData.calcLEDOff()
+        AutomationData.setAuto(averages, "LEDOffAuto.txt")
     elif msg == "CalcAverageLock":
         import AutomationData
-        AutomationData.autoMenu(1, 3)
+        averages = AutomationData.calcLock()
+        AutomationData.setAuto(averages, "LockAuto.txt")
     elif msg == "CalcAverageLEDUnlock":
         import AutomationData
-        AutomationData.autoMenu(1, 4)
+        averages = AutomationData.calcUnlock()
+        AutomationData.setAuto(averages, "UnlockAuto.txt")
+    elif msg == "ClearLEDOnAuto":
+        import AutomationData
+        AutomationData.clearFile("LEDOnAuto.txt")
+    elif msg == "ClearLEDOnData":
+        import AutomationData
+        AutomationData.clearFile("ledonday.txt")
+        AutomationData.clearFile("ledonhour.txt")
+        AutomationData.clearFile("ledonminute.txt")
+    elif msg == "ClearLEDOffAuto":
+        import AutomationData
+        AutomationData.clearFile("LEDOffAuto.txt")
+    elif msg == "ClearLEDOffData":
+        import AutomationData
+        AutomationData.clearFile("ledoffday.txt")
+        AutomationData.clearFile("ledoffhour.txt")
+        AutomationData.clearFile("ledoffminute.txt")
+    elif msg == "ClearLockAuto":
+        import AutomationData
+        AutomationData.clearFile("LockAuto.txt")
+    elif msg == "ClearLockData":
+        import AutomationData
+        AutomationData.clearFile("lockday.txt")
+        AutomationData.clearFile("lockhour.txt")
+        AutomationData.clearFile("lockminute.txt")
+    elif msg == "ClearUnlockAuto":
+        import AutomationData
+        AutomationData.clearFile("UnlockAuto.txt")
+    elif msg == "ClearUnlockData":
+        import AutomationData
+        AutomationData.clearFile("unlockday.txt")
+        AutomationData.clearFile("unlockhour.txt")
+        AutomationData.clearFile("unlockminute.txt")
+    elif msg == "TurnOnAuto":
+        import Automation
+    
+        
         
     
     
 
-mqttClient = mqtt.Client("IOSApp")
+mqttClient = mqtt.Client("iOS Device")
 mqttClient.on_connect = connectAndSubscribe
-mqttClient.connect("ServerAdress", "PortNumber")
+mqttClient.connect("172.20.10.4", 1884)
 mqttClient.loop_forever()
