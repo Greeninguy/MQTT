@@ -1,3 +1,13 @@
+import RPi.GPIO as GPIO
+import time
+import datetime
+from datetime import datetime
+
+ledPin = 11
+GPIO.setmode(GPIO.BOARD)
+
+GPIO.setup(ledPin, GPIO.OUT)
+
 def setup():
     import RPi.GPIO as GPIO
     
