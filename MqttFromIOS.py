@@ -27,6 +27,11 @@ def processMessage(client, userdata, message):
     elif msg == "SetSensorHeight":
         print("Setting Sensor Height Threshold")
         import sensorController
+        height = msg[17:]
+        sensorController.setTrigger(height)
+    elif msg == "SetSensorHeight2":
+        print("Setting Sensor Height Threshold")
+        import sensorController
         sensorController.setTrigger2()
     elif msg == "ActivateSensor":
         print("Activating Sensor")

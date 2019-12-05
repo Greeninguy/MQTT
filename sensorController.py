@@ -46,16 +46,10 @@ def distance():
     return distance
     
 #Manually set trigger distance for sensor
-def setTrigger():
-	print ("Enter Distance (cm) \n")
-	trigger = input()
-	proper = trigger.isdigit()
-	while proper == false:
-		print ("Please Enter a Number \n")
-		trigger = input()
-		proper = trigger.isdigit()
-		print ("Height Threshold is now " + trigger)
-	return trigger
+def setTrigger(string):
+    f = open("HeightTrigger.txt", 'w')
+    f.write(string)
+    f.close()
     
 #Use the sensor to set trigger distance
 def setTrigger2():
