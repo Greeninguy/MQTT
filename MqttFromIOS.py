@@ -1,7 +1,7 @@
 import paho.mqtt.client as mqtt
 
 def connectAndSubscribe(client, userdata, flags, rc):
-    mqttClient.subscribe("IOSTopic")
+    mqttClient.subscribe("iosToRpi")
 
 def processMessage(client, userdata, message):
     topic = str(message.topic)
@@ -108,7 +108,7 @@ def processMessage(client, userdata, message):
     
     
 
-mqttClient = mqtt.Client("iOS Device")
+mqttClient = mqtt.Client("RPI")
 mqttClient.on_connect = connectAndSubscribe
-mqttClient.connect("172.20.10.4", 1884)
+mqttClient.connect("127.8.8.1")
 mqttClient.loop_forever()
