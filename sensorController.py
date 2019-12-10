@@ -76,7 +76,7 @@ def setTrigger2():
 	dist += distance()
 	i = i - 1
 	time.sleep(1)
-    trigger = dist / 4
+    trigger = dist / 3
     print ("Height Threshold is now " + trigger)
     f = open("HeightTrigger.txt", 'w')
     f.write(str(trigger))
@@ -119,7 +119,7 @@ def detect():
                 import LockController
                 LockController.lockAfterUnlock()
             print ("Measured Distance = %.1f cm" % dist)
-            time.sleep(3)
+            time.sleep(1)
 
     #Reset by pressing CTRL + C
     except KeyboardInterrupt:
