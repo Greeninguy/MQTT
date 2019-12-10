@@ -87,7 +87,22 @@ def processMessage(client, userdata, message):
         AutomationData.clearFile("unlockminute.txt")
     elif msg == "TurnOnAuto":
         import Automation
-    
+    elif msg == "RequestAutoLEDOn.txt":
+        f = open("LEDOnAuto.txt", 'r')
+        auto = f.read()
+        #send auto via MQTT
+    elif msg == "RequestAutoLEDOff.txt":
+        f = open("LEDOffAuto.txt", 'r')
+        auto = f.read()
+        #send auto via MQTT
+    elif msg == "RequestAutoLock.txt":
+        f = open("LockAuto.txt", 'r')
+        auto = f.read()
+        #send auto via MQTT
+    elif msg == "RequestAutoUnlock.txt":
+        f = open("UnlockAuto.txt", 'r')
+        auto = f.read()
+        #send auto via MQTT
         
         
     
