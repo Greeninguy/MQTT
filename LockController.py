@@ -21,7 +21,7 @@ def setup():
 
 def operateLock():
     import RPi.GPIO as GPIO
-    GPIO.setmode(GPIO.Board)
+    GPIO.setmode(GPIO.BOARD)
     GIOP.setwarnings(False)
     ledPin = 11
     GPIO.setup(ledPin, GPIO.OUT)
@@ -48,6 +48,7 @@ def operateLock():
         f.write('\n')
         f.close()
         GPIO.output(ledPin, GPIO.LOW)
+        print(pinState)
         time.sleep(6)
         print("Locking Gate.")
         GPIO.output(ledPin, GPIO.HIGH)
@@ -71,7 +72,7 @@ def operateLock():
 
 def lock():
     import RPi.GPIO as GPIO
-    GPIO.setmode(GPIO.Board)
+    GPIO.setmode(GPIO.BOARD)
     GIOP.setwarnings(False)
     ledPin = 11
     GPIO.setup(ledPin, GPIO.OUT)
