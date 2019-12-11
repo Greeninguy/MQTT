@@ -6,7 +6,7 @@ def connectAndSubscribe(client, userdata, flags, rc):
 def processMessage(client, userdata, message):
     topic = str(message.topic)
     msg = str(message.payload.decode("utf-8"))
-    print(msg)
+
     #These strings are what I have setup to activate the controller scripts
     if msg == "LEDOn":
         import LEDController
@@ -110,6 +110,5 @@ def processMessage(client, userdata, message):
 
 mqttClient = mqtt.Client("RPI")
 mqttClient.on_connect = connectAndSubscribe
-mqttClient.on_message = processMessage 
-mqttClient.connect("localhost", 1883, 10)
+mqttClient.connect("localhost")
 mqttClient.loop_forever()
