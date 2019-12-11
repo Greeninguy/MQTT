@@ -89,7 +89,10 @@ def processMessage(client, userdata, message):
     elif msg == "RequestAutoLock.txt":
         import AutomationData
         averages = AutomationData.calcUnlock()
-        mqttClient.publish("rpiToIos", averages)
+        stringed = ""
+        for x in averages:
+            stringed = stringed + x
+        mqttClient.publish("rpiToIos", stringed)
     elif msg == "RequestAutoUnlock.txt":
         f = open("UnlockAuto.txt", 'r')
         auto = f.read()
@@ -97,9 +100,7 @@ def processMessage(client, userdata, message):
     elif msg == "Yes":
         import AutomationData
         averages = AutomationData.calcUnlock()
-        f = open("UnlockAuto.txt", 'w')
-        f.write(averages)
-        f.close()
+        AutomationData.setAuto(averages, "UnlockAuto.txt")
         print("Set automation for Lock.")
         
     
