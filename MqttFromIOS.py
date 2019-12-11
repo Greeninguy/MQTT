@@ -87,18 +87,22 @@ def processMessage(client, userdata, message):
         auto = f.read()
         #send auto via MQTT
     elif msg == "RequestAutoLock.txt":
-        f = open("LockAuto.txt", 'r')
-        auto = f.read()
-        #send auto via MQTT
+        import AutomationData
+        averages = AutomationData.calcUnlock()
+        mqttClient.publish("rpiToIos", averages)
     elif msg == "RequestAutoUnlock.txt":
         f = open("UnlockAuto.txt", 'r')
         auto = f.read()
         #send auto via MQTT
-        
+    elif msg == "Yes":
+        import AutomationData
+        averages = AutomationData.calcUnlock()
+        f = open("UnlockAuto.txt", 'w')
+        f.write(averages)
+        f.close()
+        print("Set automation for Lock.")
         
     
-    
-
 mqttClient = mqtt.Client("RPI")
 mqttClient.on_connect = connectAndSubscribe
 mqttClient.connect("localhost")
