@@ -19,6 +19,56 @@ def setup():
 
     GPIO.setup(ledPin, GPIO.OUT)
 
+def operateLock():
+    import RPi.GPIO as GPIO
+    GPIO.setmode(GPIO.Board)
+    GIOP.setwarnings(False)
+    ledPin = 11
+    GPIO.setup(ledPin, GPIO.OUT)
+    import time
+    import datetime
+    from datetime import datetime
+
+    pinState = GPIO.input(ledPin)
+
+    if pinState == 1:
+        print("Unlocking Gate.")
+        d = datetime.today()
+        t = d.timetuple()
+        f = open("lockday.txt", 'a')
+        f.write(str(d.weekday()))
+        f.write('\n')
+        f.close()
+        f = open("lockhour.txt", 'a')
+        f.write(str(t[3]))
+        f.write('\n')
+        f.close()
+        f = open("lockminute.txt", 'a')
+        f.write(str(t[4]))
+        f.write('\n')
+        f.close()
+        GPIO.output(ledPin, GPIO.LOW)
+        time.sleep(6)
+        print("Locking Gate.")
+        GPIO.output(ledPin, GPIO.HIGH)
+    else:
+        print("Locking Gate.")
+        d = datetime.today()
+        t = d.timetuple()
+        f = open("lockday.txt", 'a')
+        f.write(str(d.weekday()))
+        f.write('\n')
+        f.close()
+        f = open("lockhour.txt", 'a')
+        f.write(str(t[3]))
+        f.write('\n')
+        f.close()
+        f = open("lockminute.txt", 'a')
+        f.write(str(t[4]))
+        f.write('\n')
+        f.close()
+        GPIO.output(ledPin, GPIO.HIGH)
+
 def lock():
     import RPi.GPIO as GPIO
     GPIO.setmode(GPIO.Board)

@@ -6,24 +6,15 @@ def connectAndSubscribe(client, userdata, flags, rc):
 def processMessage(client, userdata, message):
     topic = str(message.topic)
     msg = str(message.payload.decode("utf-8"))
+    print("Recieved Message: " + msg)
 
     #These strings are what I have setup to activate the controller scripts
-    if msg == "LEDOn":
+    if msg == "LED":
         import LEDController
-        LEDController.turnOn()
-        print("Turned LED On.")
-    elif msg == "LEDOff":
-        import LEDController
-        LEDController.turnOff()
-        print("Turned LED Off.")
+        LEDController.operateLED()
     elif msg == "Lock":
         import LockController
-        LockController.lock()
-        print("Locked Gate.")
-    elif msg == "Unlock":
-        import LockController
-        LockController.unlock()
-        print("Unlocked Gate")
+        LockController.operateLock()
     elif msg == "SetSensorHeight":
         print("Setting Sensor Height Threshold")
         import sensorController

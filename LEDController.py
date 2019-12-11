@@ -10,6 +10,52 @@ def setup():
 
     GPIO.setup(ledPin, GPIO.OUT)
 
+def operateLED():
+    import RPi.GPIO as GPIO
+    import datetime
+    from datetime import datetime
+    GPIO.setmode(GPIO.BOARD)
+    GPIO.setwarnings(False)
+    ledPin = 31
+    GPIO.setup(ledPin, GPIO.OUT)
+
+    pinState = GPIO.input(ledPin)
+    
+    if pinState == 1:
+        print ("Turning off LED")
+        d = datetime.today()
+        t = d.timetuple()
+        f = open("ledoffday.txt", 'a')
+        f.write(str(d.weekday()))
+        f.write('\n')
+        f.close()
+        f = open("ledoffhour.txt", 'a')
+        f.write(str(t[3]))
+        f.write('\n')
+        f.close()
+        f = open("ledoffminute.txt", 'a')
+        f.write(str(t[4]))
+        f.write('\n')
+        f.close()
+        GPIO.output(ledPin, GPIO.LOW)
+    else:
+        print("Turning on light.")
+        d = datetime.today()
+        t = d.timetuple()
+        f = open("ledonday.txt", 'a')
+        f.write(str(d.weekday()))
+        f.write('\n')
+        f.close()
+        f = open("ledonhour.txt", 'a')
+        f.write(str(t[3]))
+        f.write('\n')
+        f.close()
+        f = open("ledonminute.txt", 'a')
+        f.write(str(t[4]))
+        f.write('\n')
+        f.close()
+        GPIO.output(ledPin, GPIO.HIGH)
+
 def turnOn():
     import RPi.GPIO as GPIO
     import datetime
@@ -18,6 +64,7 @@ def turnOn():
     GPIO.setwarnings(False)
     ledPin = 31
     GPIO.setup(ledPin, GPIO.OUT)
+    
     
     print("Turning on light.")
     d = datetime.today()
