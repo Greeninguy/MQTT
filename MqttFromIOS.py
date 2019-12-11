@@ -110,5 +110,5 @@ def processMessage(client, userdata, message):
 
 mqttClient = mqtt.Client("RPI")
 mqttClient.on_connect = connectAndSubscribe
-mqttClient.connect("127.8.8.1")
+mqttClient.connect("localhost")
 mqttClient.loop_forever()
