@@ -66,16 +66,24 @@ def autoMenu(inp1, inp2):
 
 def calcAvg(day, hour, minute):
     lists = [day, hour, minute]
+    print("before calc")
+    print(lists)
+    
     averages = []
     for i in lists:
+        print("starting i")
+        print(i)
         x = 0
         avg = 0
         for j in i:
+            print("starting j")
+            print(j)
             avg = avg + j
             x = x + 1
         avg = avg / x
-    averages.append(int(avg))
-    print("Averages are " + averages)
+        averages.append(int(avg))
+    print("after calc")
+    print(averages)
     return averages
 
 def readFile(file):
@@ -121,7 +129,7 @@ def calcUnlock():
 
 def setAuto(averages, file):
     if len(averages) == 3:
-        f.open(file, 'w')
+        f = open(file, 'w')
         f.write(str(averages[0]))
         f.write('\n')
         f.write(str(averages[1]))
@@ -130,4 +138,4 @@ def setAuto(averages, file):
         f.write('\n')
         f.close()
     else:
-        print("Error: This function does not have averages.)
+        print("Error: This function does not have averages.")

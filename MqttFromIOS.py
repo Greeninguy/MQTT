@@ -92,6 +92,7 @@ def processMessage(client, userdata, message):
         stringed = ""
         for x in averages:
             stringed = stringed + x
+        print("Sent Message To IOS: " + stringed)
         mqttClient.publish("rpiToIos", stringed)
     elif msg == "RequestAutoUnlock.txt":
         f = open("UnlockAuto.txt", 'r')
@@ -106,6 +107,5 @@ def processMessage(client, userdata, message):
     
 mqttClient = mqtt.Client("RPI")
 mqttClient.on_connect = connectAndSubscribe
-mqttClient.on_message = processMessage 
-mqttClient.connect("localhost", 1883, 10)
+mqttClient.connect("localhost")
 mqttClient.loop_forever()

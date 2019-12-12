@@ -1,12 +1,3 @@
-import RPi.GPIO as GPIO
-import time
-import datetime
-from datetime import datetime
-
-ledPin = 11
-GPIO.setmode(GPIO.BOARD)
-
-GPIO.setup(ledPin, GPIO.OUT)
 
 def setup():
     import RPi.GPIO as GPIO
@@ -22,7 +13,7 @@ def setup():
 def operateLock():
     import RPi.GPIO as GPIO
     GPIO.setmode(GPIO.BOARD)
-    GIOP.setwarnings(False)
+    GPIO.setwarnings(False)
     ledPin = 11
     GPIO.setup(ledPin, GPIO.OUT)
     import time
